@@ -1,0 +1,20 @@
+纹理过滤
+http://smartblack.iteye.com/blog/762948
+边界检查
+http://www.jianshu.com/p/8687a040eb48
+shader 特效
+http://blog.csdn.net/panda1234lee/article/details/52320832
+
+二次线性过滤
+https://www.opengl.org/discussion_boards/showthread.php/162462-mipmaps-bilinear-filtering-in-a-vertex-shader
+
+滤波
+http://developer.download.nvidia.com/books/HTML/gpugems/gpugems_ch24.html
+
+边缘检测
+http://blog.csdn.net/wolf96/article/details/43670851
+http://blog.csdn.net/likezhaobin/article/details/6892176
+
+mipmap抗锯齿
+http://www.linuxidc.com/Linux/2015-02/114020.htm
+https://developer.mozilla.org/en-US/docs/Web/API/EXT_texture_filter_anisotropic
