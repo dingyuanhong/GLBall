@@ -168,19 +168,20 @@ function Render(Canvas,target){
 		gl.bindFramebuffer(gl.FRAMEBUFFER,null);
 	}
 
-  //绘制图片
-  function renderTexture(frame) {
+	//绘制图片
+	function renderTexture(frame) {
+		
+		//bindFBO();
+		gl.viewport(0, 0, defaultOption.width, defaultOption.height);
 
-			bindFBO();
-			gl.viewport(0, 0, defaultOption.width, defaultOption.height);
+		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE,  frame);
+		gl.useProgram(program);
+		gl.uniform1i(uSampler, 0);
 
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE,  frame);
-      gl.uniform1i(uSampler, 0);
+		renderFlush();
 
-      renderFlush();
-
-			fboDraw();
-  }
+		//fboDraw();
+	}
   //渲染
   function renderArray(){
     gl.enable(gl.DEPTH_TEST);
@@ -239,6 +240,7 @@ function Render(Canvas,target){
 	}
 	//设置矩阵
 	function SetMVPMatrix(mvpMatrix){
+		gl.useProgram(program);
 		gl.uniformMatrix4fv(mvpMatrixLocation, false, mvpMatrix.elements);
 	}
 
@@ -326,7 +328,7 @@ function Render(Canvas,target){
 		}else {
 			fovy = newFov;
 		}
-		renderFlush();
+		//renderFlush();
 	}
 
 //鼠标操作
@@ -436,7 +438,7 @@ function Render(Canvas,target){
 			eyeY = distance * Math.cos(angleBeta);
 			eyeZ = distance * Math.sin(angleBeta) * Math.sin(angleAlpha);
 			near = distance;
-			renderFlush();
+			//renderFlush();
 		}
 
 		function timerCallback(){
@@ -484,7 +486,7 @@ function Render(Canvas,target){
 				//移动
 				vMatrixMove(ratio);
 				//渲染
-				renderFlush();
+				//renderFlush();
 
 				//开启定时器
 				timer = setTimeout(timerCallback,timeout);
@@ -530,7 +532,7 @@ function Render(Canvas,target){
 				curX = Event.clientX;
 				curY = Event.clientY;
 				vMatrixMove(1);
-				renderFlush();
+				//renderFlush();
 				event.preventDefault();
 			}
 		}
