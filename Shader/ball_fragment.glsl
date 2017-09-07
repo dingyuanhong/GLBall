@@ -659,11 +659,11 @@ void main()
 {
 	// main_a();
 	// vec2 iResolution = vec2(200.,200.);
-	// gl_FragColor = BasePixel();
+	gl_FragColor = BasePixel();
 	// gl_FragColor = Mean9Filter(u_Sampler,v_TexCoord);
 	// gl_FragColor = Mean25Filter(u_Sampler,v_TexCoord);
 	// gl_FragColor = sobel(u_Sampler,v_TexCoord);
 	// gl_FragColor = sobel2(u_Sampler,v_TexCoord);
 	// gl_FragColor = sobelFilter(u_Sampler,v_TexCoord);
-	gl_FragColor = snnFilter(u_Sampler,v_TexCoord);
+	// gl_FragColor = snnFilter(u_Sampler,v_TexCoord);
 }

@@ -46,8 +46,10 @@ var onLoadGLTest = function(){
 	//var render = new GLRender(canvas,800,800);
 	//var render = new GLRender(canvas,canvas.width,canvas.height);
 	
+	VideoPlay(canvas,video);
+	
 	video.oncanplay =  function() {
-		VideoPlay(canvas,video);
+		//VideoPlay(canvas,video);
 		video.oncanplay = null;
 	};
 
