@@ -1,4 +1,4 @@
-function Render(Canvas,target){
+function Render(Canvas,target,options){
   function GetGL(canvas){
     return canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
   }
@@ -7,7 +7,8 @@ function Render(Canvas,target){
       'width': '1140',
       'height': '640',
       'sphereRadius': 1.0,
-      'spherePrecision': 50
+      'spherePrecision': 50,
+	  'selfRender':false
   };
 
   var canvas = Canvas,
@@ -23,7 +24,16 @@ function Render(Canvas,target){
 
   defaultOption.width = canvas.width;
   defaultOption.height = canvas.width;
-
+  console.log(options);
+  if(options != undefined)
+  {
+	  if(options.selfRender != undefined)
+	  {
+		  defaultOption.selfRender = options.selfRender;
+	  }
+  }
+  console.log(defaultOption.selfRender);
+  
   initWebGL(defaultOption);
   initTexture();
   calcSphereData(defaultOption);
@@ -328,7 +338,8 @@ function Render(Canvas,target){
 		}else {
 			fovy = newFov;
 		}
-		//renderFlush();
+		if(defaultOption.selfRender != false)
+			renderFlush();
 	}
 
 //鼠标操作
@@ -438,7 +449,8 @@ function Render(Canvas,target){
 			eyeY = distance * Math.cos(angleBeta);
 			eyeZ = distance * Math.sin(angleBeta) * Math.sin(angleAlpha);
 			near = distance;
-			//renderFlush();
+			if(defaultOption.selfRender != false)
+				renderFlush();
 		}
 
 		function timerCallback(){
@@ -486,7 +498,8 @@ function Render(Canvas,target){
 				//移动
 				vMatrixMove(ratio);
 				//渲染
-				//renderFlush();
+				if(defaultOption.selfRender != false)
+					renderFlush();
 
 				//开启定时器
 				timer = setTimeout(timerCallback,timeout);
@@ -532,7 +545,8 @@ function Render(Canvas,target){
 				curX = Event.clientX;
 				curY = Event.clientY;
 				vMatrixMove(1);
-				//renderFlush();
+				if(defaultOption.selfRender != false)
+					renderFlush();
 				event.preventDefault();
 			}
 		}
@@ -547,7 +561,7 @@ function Render(Canvas,target){
 			timer = setTimeout(timerCallback,1000/60);
 			}
 
-			function handleMouseOut() {
+		function handleMouseOut() {
 			leftBtnDown = false;
 			// this.style.cursor = "auto";
 		}

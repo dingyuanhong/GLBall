@@ -21,7 +21,7 @@ $(document).ready(function(){
 	console.log(gl);
 	img.onload = function()
 	{
-		var render = new Render(canvas,canvas);
+		var render = new Render(canvas,canvas,{'selfRender':true});
 		// var render = new GLRender(canvas,400,400);
 		setTimeout(function(){
 			render.updata(img);
