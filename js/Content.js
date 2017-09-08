@@ -50,6 +50,12 @@ var VideoCallback = function(id,callback){
 		if(browserPC() || IsPC())
 			timerCallback();
 	}
+	
+	video.onerror = function(e) {
+		console.log("video error!");
+		console.log(video.error);
+		alert(video.error.message);
+	};
 }
 
 var VideoPlay= function(canvas,video)
@@ -84,16 +90,12 @@ var onLoadGLTest = function(){
 		openBtn.addEventListener("click",function(){
 			video.play();
 		});
-	}else
+	}
+	else
 	{
 		var openBtn = document.getElementById('videoOpen');
 		openBtn.setAttribute('class','hide');
 	}
-	
-	video.oncanplay =  function() {
-		//VideoPlay(canvas,video);
-		video.oncanplay = null;
-	};
 
 	window.ondragover=function(e) {
 		//console.log(e);
