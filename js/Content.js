@@ -1,3 +1,34 @@
+function IsPC() {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+
+function browserPC() {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+    if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){
+        return true;
+    }
+	return false;
+}
+
 var VideoCallback = function(id,callback){
 	var video = document.getElementById(id);
 
@@ -16,7 +47,8 @@ var VideoCallback = function(id,callback){
 	},false);
 
 	if(video.autoplay){
-		timerCallback();
+		if(browserPC() || IsPC())
+			timerCallback();
 	}
 }
 
@@ -29,7 +61,7 @@ var VideoPlay= function(canvas,video)
 	canvas.clientHeight = 1520;
 	//console.log(video.clientWidth);
 	
-	var render = new Render(canvas,canvas);
+	var render = new Render(canvas,canvas,{'selfRender':true});
 	var camputeFrame = function(image){
 		render.updata(image);
 	}
@@ -39,7 +71,6 @@ var VideoPlay= function(canvas,video)
 
 var onLoadGLTest = function(){
 	var video = document.getElementById('video');
-	
 	// var gl = document.getElementById("imgCanvas").getContext("2d");
 	var canvas = document.getElementById("glCanvas");
 	
@@ -47,6 +78,17 @@ var onLoadGLTest = function(){
 	//var render = new GLRender(canvas,canvas.width,canvas.height);
 	
 	VideoPlay(canvas,video);
+	if(!(browserPC() || IsPC()))
+	{
+		var openBtn = document.getElementById('videoOpen');
+		openBtn.addEventListener("click",function(){
+			video.play();
+		});
+	}else
+	{
+		var openBtn = document.getElementById('videoOpen');
+		openBtn.setAttribute('class','hide');
+	}
 	
 	video.oncanplay =  function() {
 		//VideoPlay(canvas,video);
