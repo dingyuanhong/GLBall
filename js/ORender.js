@@ -19,6 +19,7 @@ function Render(Canvas,target,options){
   pointNum = 0;
 
   if(gl == null){
+	  alert("gl 获取失败!");
     return null;
   }
 
@@ -68,10 +69,10 @@ function Render(Canvas,target,options){
               'void main(){\n' +
               'gl_FragColor = texture2D(uSampler, vTexCoord);\n' +
               '}';
-			var ball_vertex = JCore.$import('./Shader/ball_vertex.glsl')
-			var ball__fragment = JCore.$import('./Shader/ball_fragment.glsl')
-			vshaderSource = ball_vertex.text;
-			fshaderSource = ball__fragment.text;
+			//var ball_vertex = JCore.$import('./Shader/ball_vertex.glsl')
+			//var ball__fragment = JCore.$import('./Shader/ball_fragment.glsl')
+			//vshaderSource = ball_vertex.text;
+			//fshaderSource = ball__fragment.text;
 
 			var extensions = gl.getSupportedExtensions();
 			console.log(extensions);
