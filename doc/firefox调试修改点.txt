@@ -1,0 +1,8 @@
+xpinstall.signatures.required false;
+调试方案:
+devtools.debugger.remote-enabled true;
+devtools.debugger.force-local false;
+手机:
+设置>高级>开发者工具>调试
+#webIDE开启流程
+https://developer.mozilla.org/en-US/docs/Tools/WebIDE/Opening_WebIDE
