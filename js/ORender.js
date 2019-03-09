@@ -184,7 +184,8 @@ function Render(Canvas,target,options){
 		
 		//bindFBO();
 		gl.viewport(0, 0, defaultOption.width, defaultOption.height);
-
+		//如果为IOS则启动此种设置加速
+		//platform.ios && 10 <= platform.iosversion && gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, !0);
 		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE,  frame);
 		gl.useProgram(program);
 		gl.uniform1i(uSampler, 0);
